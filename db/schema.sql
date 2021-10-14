@@ -5,13 +5,13 @@ USE globadine_db;
 
 CREATE TABLE department (
   id INT NOT NULL AUTO_INCREMENT,
-  NAME VARCHAR(30) NOT NULL,
+  name VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE emp_role (
   id INT NOT NULL AUTO_INCREMENT,
-  title VARCHAR(30) NOT NULL,
+  title VARCHAR (30) NOT NULL,
   salary DECIMAL (6, 2),
   department_id INT NOT NULL,
   PRIMARY KEY (id),
