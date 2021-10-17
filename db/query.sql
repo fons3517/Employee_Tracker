@@ -1,9 +1,10 @@
 SELECT *
 
 FROM employee 
+
+
 INNER JOIN emp_role
-INNER JOIN department
-   ON employee.id = emp_role.id = department.dept_name;
+   ON employee.id = emp_role.id;
 
 
 UPDATE employee
