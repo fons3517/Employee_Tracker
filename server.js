@@ -1,8 +1,8 @@
-const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
 const fs = require('fs');
 const inquirer = require('inquirer');
+const { fetchAsyncQuestionProperty } = require('inquirer/lib/utils/utils');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -77,77 +77,99 @@ app.listen(PORT, () => {
 });
 
 
-function beginPrompt() {
+function addDepartment() {
 
     inquirer
         .prompt([
             {
-                type: 'text',
-                name: 'addDept',
+                type: 'input',
+                name: 'toDo',
                 message: 'What would you like to do?',
             },
             {
                 type: 'text',
-                name: 'addDept',
+                name: 'dept_name',
                 message: 'What is the name of the department?',
             },
+        ]).then(answers => {
+            console.log('Added ' + answers.deptName + ' to the database');
+        });
+
+    function addRole() {
+        inquirer.prompt([
             {
                 type: 'text',
-                name: 'addDept',
-                message: 'What is the name of the department?',
-            },
-            {
-                type: 'text',
-                name: 'addDept',
+                name: 'addRole',
                 message: 'What would you like to do?',
             },
             {
                 type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
+                name: 'title',
+                message: 'What is the name of the role?',
             },
             {
                 type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
+                name: 'salary',
+                message: 'What is the salary of the role?',
             },
             {
                 type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
+                name: 'whichDept',
+                message: 'Which department does the role belong to?',
             },
+        ]).then(answers => {
+            console.log('Added ' + answers.roleName + ' to the database');
+        });
+
+        function addEmployee() {
+            inquirer.prompt([
+                {
+                    type: 'text',
+                    name: 'addEmp',
+                    message: 'What would you like to do?',
+                },
+                {
+                    type: 'text',
+                    name: 'first_name',
+                    message: 'What is the employees first name?',
+                },
+                {
+                    type: 'text',
+                    name: 'last_name',
+                    message: 'What is the employees last name?',
+                },
+                {
+                    type: 'text',
+                    name: 'title',
+                    message: 'What is the employees role?',
+                },
+                {
+                    type: 'text',
+                    name: 'empMgr',
+                    message: 'Who is the employees manager?',
+                },
+            ]).then((answers) => {
+                console.log('Added ' + answers.fistName + answers.lastName + ' to the database')
+            });
+            
+            function updateEmployee() {
+                inquirer.prompt([
+
+                ]).then((answers) => {
+                    console.log('Added ' + answers.empName)
+                })
+            }
+
             {
                 type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
-            },
-            {
-                type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
-            },
-            {
-                type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
-            },
-            {
-                type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
-            },
-            {
-                type: 'text',
-                name: 'addDept',
-                message: 'What would you like to do?',
+                    name: 'addDept',
+                        message: 'What would you like to do?',
             },
             {
                 type: 'list',
-                name: 'updateEmpRole',
-                message: 'What would you like to do?',
-                choices: ['Malia Brown', 'sarah Lourd', 'Tom Allen', 'Sam Kash', 'John Doe', 'Mike Chan', 'Ashley Rodriguez'],
+                    name: 'updateEmpRole',
+                        message: 'What would you like to do?',
+                            choices: ['Malia Brown', 'sarah Lourd', 'Tom Allen', 'Sam Kash', 'John Doe', 'Mike Chan', 'Ashley Rodriguez'],
             },
-        ])
-        .then(answers => {
-            console.info('Answer:', answers.);
-        });
+        ]);
+        };
