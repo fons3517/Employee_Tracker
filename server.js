@@ -2,8 +2,7 @@
 const mysql = require('mysql2');
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { fetchAsyncQuestionProperty } = require('inquirer/lib/utils/utils');
-
+const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -76,7 +75,7 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
-function init() {
+function startMenu() {
     
     function addDepartment() {
         inquirer.prompt([
@@ -84,7 +83,7 @@ function init() {
                 type: 'list',
                 name: 'toDo',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit', 'View All Employees']
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
             },
             {
                 type: 'text',
@@ -95,6 +94,7 @@ function init() {
             console.log('Added ' + answers.deptName + ' to the database');
         });
     };
+    addDepartment();
 
     function addRole() {
         inquirer.prompt([
@@ -102,7 +102,7 @@ function init() {
                 type: 'list',
                 name: 'toDo',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
             },
             {
                 type: 'text',
@@ -124,6 +124,7 @@ function init() {
             console.log('Added ' + answers.roleName + ' to the database');
         });
     };
+    addRole();
 
     function addEmployee() {
         inquirer.prompt([
@@ -131,7 +132,7 @@ function init() {
                 type: 'list',
                 name: 'toDo',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
             },
             {
                 type: 'text',
@@ -159,6 +160,7 @@ function init() {
                     console.log('Added ' + answers.fistName + answers.lastName + ' to the database')
         });
     };
+    addEmployee();
 
     function updateEmployee() {
         inquirer.prompt([
@@ -166,7 +168,7 @@ function init() {
                 type: 'list',
                 name: 'toDo',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
             },
             {
                 type: 'list',
@@ -184,5 +186,6 @@ function init() {
             console.log('Updated employees role');
         });
     };
-
+    updateEmployee();
 };
+startMenu();

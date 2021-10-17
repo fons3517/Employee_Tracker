@@ -6,27 +6,6 @@ INNER JOIN department
    ON employee.id = emp_role.id = department.dept_name;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 UPDATE employee
 SET manager_id = ;
 WHERE id = ;
