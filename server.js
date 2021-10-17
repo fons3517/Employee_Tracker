@@ -76,11 +76,10 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
-
-function addDepartment() {
-
-    inquirer
-        .prompt([
+function init() {
+    
+    function addDepartment() {
+        inquirer.prompt([
             {
                 type: 'list',
                 name: 'toDo',
@@ -95,6 +94,7 @@ function addDepartment() {
         ]).then(answers => {
             console.log('Added ' + answers.deptName + ' to the database');
         });
+    };
 
     function addRole() {
         inquirer.prompt([
@@ -123,65 +123,66 @@ function addDepartment() {
         ]).then(answers => {
             console.log('Added ' + answers.roleName + ' to the database');
         });
+    };
 
-        function addEmployee() {
-            inquirer.prompt([
-                {
-                    type: 'list',
-                    name: 'toDo',
-                    message: 'What would you like to do?',
-                    choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
-                },
-                {
-                    type: 'text',
-                    name: 'first_name',
-                    message: 'What is the employees first name?',
-                },
-                {
-                    type: 'text',
-                    name: 'last_name',
-                    message: 'What is the employees last name?',
-                },
-                {
-                    type: 'list',
-                    name: 'title',
-                    message: 'What is the employees role?',
-                    choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer', 'Customer Service']
-                },
-                {
-                    type: 'list',
-                    name: 'empMgr',
-                    message: 'Who is the employees manager?',
-                    choices: ['John Doe', 'Mike Chan', 'Ashley Rodriguez', 'Kevin Tupik', 'Kunal Singh', 'Malia Brown']
-                }
-            ]).then((answers) => {
-                console.log('Added ' + answers.fistName + answers.lastName + ' to the database')
-            });
-
-            function updateEmployee() {
-                inquirer.prompt([
-                    {
-                        type: 'list',
-                        name: 'toDo',
-                        message: 'What would you like to do?',
-                        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
-                    },
-                    {
-                        type: 'list',
-                        name: 'chooseEmp',
-                        message: 'Which employees role do you want to update?',
-                        choices: ['John Doe', 'Mike Chan', 'Ashley Rodriguez', 'Kevin Tupik', 'Kunal Singh', 'Malia Brown', 'Sarah Lourd', 'Tom Allen', 'Sam Kash']
-                    },
-                    {
-                        type: 'list',
-                        name: 'assignRole',
-                        message: 'Which role do you want to assign to the selected employee?',
-                        choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer', 'Customer Service']
-                    }
-                ]).then((answers) => {
-                    console.log('Updated employees role');
-                });
-
-                
+    function addEmployee() {
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'toDo',
+                message: 'What would you like to do?',
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
+            },
+            {
+                type: 'text',
+                name: 'first_name',
+                message: 'What is the employees first name?',
+            },
+            {
+                type: 'text',
+                name: 'last_name',
+                message: 'What is the employees last name?',
+            },
+            {
+                type: 'list',
+                name: 'title',
+                message: 'What is the employees role?',
+                choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer', 'Customer Service']
+            },
+            {
+                type: 'list',
+                name: 'empMgr',
+                message: 'Who is the employees manager?',
+                choices: ['John Doe', 'Mike Chan', 'Ashley Rodriguez', 'Kevin Tupik', 'Kunal Singh', 'Malia Brown']
             }
+        ]).then((answers) => {
+                    console.log('Added ' + answers.fistName + answers.lastName + ' to the database')
+        });
+    };
 
+    function updateEmployee() {
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'toDo',
+                message: 'What would you like to do?',
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
+            },
+            {
+                type: 'list',
+                name: 'chooseEmp',
+                message: 'Which employees role do you want to update?',
+                choices: ['John Doe', 'Mike Chan', 'Ashley Rodriguez', 'Kevin Tupik', 'Kunal Singh', 'Malia Brown', 'Sarah Lourd', 'Tom Allen', 'Sam Kash']
+            },
+            {
+                type: 'list',
+                name: 'assignRole',
+                message: 'Which role do you want to assign to the selected employee?',
+                choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer', 'Customer Service']
+            }        
+        ]).then((answers) => {
+            console.log('Updated employees role');
+        });
+    };
+
+};
