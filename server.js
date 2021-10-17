@@ -82,15 +82,16 @@ function addDepartment() {
     inquirer
         .prompt([
             {
-                type: 'input',
+                type: 'list',
                 name: 'toDo',
                 message: 'What would you like to do?',
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit', 'View All Employees']
             },
             {
                 type: 'text',
                 name: 'dept_name',
                 message: 'What is the name of the department?',
-            },
+            }
         ]).then(answers => {
             console.log('Added ' + answers.deptName + ' to the database');
         });
@@ -98,9 +99,10 @@ function addDepartment() {
     function addRole() {
         inquirer.prompt([
             {
-                type: 'text',
-                name: 'addRole',
+                type: 'list',
+                name: 'toDo',
                 message: 'What would you like to do?',
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
             },
             {
                 type: 'text',
@@ -113,10 +115,11 @@ function addDepartment() {
                 message: 'What is the salary of the role?',
             },
             {
-                type: 'text',
+                type: 'list',
                 name: 'whichDept',
                 message: 'Which department does the role belong to?',
-            },
+                choices: ['Engineering', 'Finance', 'Legal', 'Sales', 'Service']
+            }
         ]).then(answers => {
             console.log('Added ' + answers.roleName + ' to the database');
         });
@@ -124,9 +127,10 @@ function addDepartment() {
         function addEmployee() {
             inquirer.prompt([
                 {
-                    type: 'text',
-                    name: 'addEmp',
+                    type: 'list',
+                    name: 'toDo',
                     message: 'What would you like to do?',
+                    choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
                 },
                 {
                     type: 'text',
@@ -139,37 +143,45 @@ function addDepartment() {
                     message: 'What is the employees last name?',
                 },
                 {
-                    type: 'text',
+                    type: 'list',
                     name: 'title',
                     message: 'What is the employees role?',
+                    choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer', 'Customer Service']
                 },
                 {
-                    type: 'text',
+                    type: 'list',
                     name: 'empMgr',
                     message: 'Who is the employees manager?',
-                },
+                    choices: ['John Doe', 'Mike Chan', 'Ashley Rodriguez', 'Kevin Tupik', 'Kunal Singh', 'Malia Brown']
+                }
             ]).then((answers) => {
                 console.log('Added ' + answers.fistName + answers.lastName + ' to the database')
             });
-            
+
             function updateEmployee() {
                 inquirer.prompt([
-
+                    {
+                        type: 'list',
+                        name: 'toDo',
+                        message: 'What would you like to do?',
+                        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'View All Employees', 'Quit']
+                    },
+                    {
+                        type: 'list',
+                        name: 'chooseEmp',
+                        message: 'Which employees role do you want to update?',
+                        choices: ['John Doe', 'Mike Chan', 'Ashley Rodriguez', 'Kevin Tupik', 'Kunal Singh', 'Malia Brown', 'Sarah Lourd', 'Tom Allen', 'Sam Kash']
+                    },
+                    {
+                        type: 'list',
+                        name: 'assignRole',
+                        message: 'Which role do you want to assign to the selected employee?',
+                        choices: ['Sales Lead', 'Salesperson', 'Lead Engineer', 'Software Engineer', 'Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer', 'Customer Service']
+                    }
                 ]).then((answers) => {
-                    console.log('Added ' + answers.empName)
-                })
+                    console.log('Updated employees role');
+                });
+
+                
             }
 
-            {
-                type: 'text',
-                    name: 'addDept',
-                        message: 'What would you like to do?',
-            },
-            {
-                type: 'list',
-                    name: 'updateEmpRole',
-                        message: 'What would you like to do?',
-                            choices: ['Malia Brown', 'sarah Lourd', 'Tom Allen', 'Sam Kash', 'John Doe', 'Mike Chan', 'Ashley Rodriguez'],
-            },
-        ]);
-        };
