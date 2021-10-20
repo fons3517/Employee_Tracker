@@ -2,17 +2,7 @@
 const mysql = require('mysql2');
 const fs = require('fs');
 const inquirer = require('inquirer');
-const express = require('express');
-const PORT = process.env.PORT || 3001;
-const app = express();
-let deptArray = [];
-let roleArray = [];
-let empArray = [];
-let updatedEmpArray = [];
-
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const { start } = require('repl');
 
 // Connect to database
 const db = mysql.createConnection(
@@ -23,12 +13,18 @@ const db = mysql.createConnection(
         // Add MySQL password
         password: 'iLoveCoding!!!1707',
         database: 'globadine_db'
-    },
-    console.log(`Connected to the globadine_db database.`)
-);
+    })
+
+    db.connect((err)=>{
+        if (err) throw err;
+        console.log(`Connected to the globadine_db database.`)
+        startMenu()
+
+    });
+
 
 // Query database
-
+/*
 let deletedRow = '';
 
 db.query(`DELETE FROM department WHERE id = ?`, deletedRow, (err, result) => {
@@ -66,14 +62,7 @@ db.query('SELECT * FROM employee', function (err, results) {
 });
 
 
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-    res.status(404).end();
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+*/
 
 function startMenu() {
     
@@ -87,45 +76,55 @@ function startMenu() {
             }
         ]).then(function ({ userChoice }) {
             switch (userChoice) {
-                case "department":
+                case "Add Department":
                     addDepartment();
                     break;
-                case "emp_role":
+                case "Add Role":
                     addRole();
                     break;
-                case "addEmployee":
+                case "Add Employee":
                     addEmployee();
                     break;
-                case "updateEmployee":
+                case "Udate Employee Role":
                     updateEmployee();
                     break;
+                    case "View All Employees":
+                    viewEmployees();
+                    break;
+                case "View All Roles":
+                    viewRoles();
+                    break;
+                case "View All Departments":
+                    viewDepartments();
+                    break;
+                case "Quit":
+                    process.exit(0);
             }
         });
-    
-        function addDepartment() {
-            console.log("Add Department")
-            console.log("---------------")
-            inquirer.prompt([
-                {
-                    type: 'text',
-                    name: 'dept_name',
-                    message: 'What is the name of the department?',
-                }
-            ]).then(function ({dept_name})  {
-                const currentDept = new Department(id, dept_name);
+    };
 
-                console.log('Added ' + answers.userChioce + ' to the database');
-            });
-        };
+    function addDepartment() {
+        console.log("Add Department")
+        console.log("---------------")
+        inquirer.prompt([
+            {
+                type: 'text',
+                name: 'dept_name',
+                message: 'What is the name of the department?',
+            }
+        ]).then(function ({dept_name})  {
+            db.query("INSERT INTO department (dept_name) VALUES(?);",
+            dept_name, function(err,data){
+                if (err) throw err;
+                console.log('Added ' + dept_name + ' to the database');
+                startMenu();
+    
+            } )
+        });
+    };
 
     function addRole() {
         inquirer.prompt([
-            {
-                type: 'list',
-                name: 'toDo',
-                message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit'],
-            },
             {
                 type: 'text',
                 name: 'title',
@@ -142,12 +141,13 @@ function startMenu() {
                 message: 'Which department does the role belong to?',
                 choices: ['Engineering', 'Finance', 'Legal', 'Sales', 'Service']
             }
-        ]).then(answers => {
+        ]).then(function ({dept_name})  {
+            const currentDept = new Role(id, dept_name);
+            deptObj.push(currentDept);
             console.log('Added ' + answers.roleName + ' to the database');
+            startMenu();
         });
     };
-    addRole();
-
     function addEmployee() {
         inquirer.prompt([
             {
@@ -182,7 +182,6 @@ function startMenu() {
                     console.log('Added ' + answers.fistName + answers.lastName + ' to the database')
         });
     };
-    addEmployee();
 
     function updateEmployee() {
         inquirer.prompt([
@@ -208,6 +207,4 @@ function startMenu() {
             console.log('Updated employees role');
         });
     };
-    updateEmployee();
-};
-startMenu();
+// startMenu();
