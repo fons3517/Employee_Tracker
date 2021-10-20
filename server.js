@@ -47,22 +47,36 @@ db.query(`DELETE FROM employee WHERE id = ?`, deletedRow, (err, result) => {
     }
     console.log(result);
 });
-
-// Query database
-db.query('SELECT * FROM department', function (err, results) {
-    console.log(results);
-});
-
-db.query('SELECT * FROM emp_role', function (err, results) {
-    console.log(results);
-});
-
-db.query('SELECT * FROM employee', function (err, results) {
-    console.log(results);
-});
-
-
 */
+// Query database
+
+function viewDepartments() {
+    db.query('SELECT * FROM department', function (err, results) {
+        if (err) throw err;
+        console.log(results);
+        startMenu();
+    });
+    
+}
+
+function viewRoles() {
+    db.query('SELECT * FROM emp_role', function (err, results) {
+        if (err) throw err;
+        console.log(results);
+        startMenu();
+    });
+    
+}
+
+function viewEmployees() {
+    db.query('SELECT * FROM employee', function (err, results) {
+        if (err) throw err;
+        console.log(results);
+        startMenu();
+    });
+        
+}
+
 
 function startMenu() {
     

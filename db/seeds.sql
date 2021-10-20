@@ -5,14 +5,15 @@ VALUES  ("Sales"),
         ("Customer Service"),
         ("Legal");
 
-INSERT INTO emp_role (title, salary)
-VALUES  ("Salesperson", 80000.00),
-        ("Lead Engineer", 15000.00),
-        ("Software Engineer", 120000.00),
-        ("Account Manager", 160000.00),
-        ("Accountant", 125000.00),
-        ("Legal Team Lead", 250000.00),
-        ("Lawyer", 190000.00);
+INSERT INTO emp_role (title, salary,department_id)
+VALUES  ("Salesperson", 80000.00, 1),
+        ("Lead Engineer", 15000.00, 2),
+        ("Software Engineer", 12000.00, 2),
+        ("Account Manager", 16000.00, 3),
+        ("Accountant", 12500.00, 3),
+        ("Legal Team Lead", 25000.00, 4),
+        ("Lawyer", 10000.00, 4);
+
 
 INSERT INTO employee (first_name, last_name)
 VALUES  ("John, Doe")
