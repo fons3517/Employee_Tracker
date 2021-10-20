@@ -23,12 +23,3 @@ VALUES  ("John, Doe")
         ("Malia", "Brown"),
         ("Sarah", "Lourd"),
         ("Tom", "Allen");
-
-INSERT INTO manager (first_name, last_name)
-VALUES  ("John, Doe"),
-        ("Mike", "Chan"),
-        ("Ashley", "Rodriguez"),
-        ("Kevin", "Tupik"),
-        ("Kunal", "Singh"),
-        ("Malia", "Brown"),
-        ("Sarah", "Lourd");

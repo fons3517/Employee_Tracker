@@ -5,6 +5,10 @@ const inquirer = require('inquirer');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
+let deptArray = [];
+let roleArray = [];
+let empArray = [];
+let updatedEmpArray = [];
 
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
@@ -61,10 +65,6 @@ db.query('SELECT * FROM employee', function (err, results) {
     console.log(results);
 });
 
-db.query('SELECT * FROM manager', function (err, results) {
-    console.log(results);
-});
-
 
 // Default response for any other request (Not Found)
 app.use((req, res) => {
@@ -77,24 +77,46 @@ app.listen(PORT, () => {
 
 function startMenu() {
     
-    function addDepartment() {
         inquirer.prompt([
             {
                 type: 'list',
-                name: 'toDo',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
-            },
-            {
-                type: 'text',
-                name: 'dept_name',
-                message: 'What is the name of the department?',
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit'],
+                name: 'userChoice'
+
             }
-        ]).then(answers => {
-            console.log('Added ' + answers.deptName + ' to the database');
+        ]).then(function ({ userChoice }) {
+            switch (userChoice) {
+                case "department":
+                    addDepartment();
+                    break;
+                case "emp_role":
+                    addRole();
+                    break;
+                case "addEmployee":
+                    addEmployee();
+                    break;
+                case "updateEmployee":
+                    updateEmployee();
+                    break;
+            }
         });
-    };
-    addDepartment();
+    
+        function addDepartment() {
+            console.log("Add Department")
+            console.log("---------------")
+            inquirer.prompt([
+                {
+                    type: 'text',
+                    name: 'dept_name',
+                    message: 'What is the name of the department?',
+                }
+            ]).then(function ({dept_name})  {
+                const currentDept = new Department(id, dept_name);
+
+                console.log('Added ' + answers.userChioce + ' to the database');
+            });
+        };
 
     function addRole() {
         inquirer.prompt([
@@ -102,7 +124,7 @@ function startMenu() {
                 type: 'list',
                 name: 'toDo',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit']
+                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit'],
             },
             {
                 type: 'text',

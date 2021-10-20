@@ -24,19 +24,8 @@ CREATE TABLE employee (
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   role_id INT,
-  manager_id INT,
+  manager_id INT AUTO_INCREMENT,
   PRIMARY KEY (id),
   FOREIGN KEY (role_id)
   REFERENCES emp_role (id)
 );
-
-CREATE TABLE manager (
-    id INT AUTO_INCREMENT,
-    first_name VARCHAR(30),
-    last_name VARCHAR(30),
-    employee_id INT,
-    PRIMARY KEY (id),
-    FOREIGN KEY (employee_id)
-    REFERENCES employee (id)
-);
-

@@ -3,7 +3,7 @@ SELECT *
 FROM employee 
 
 
-INNER JOIN emp_role
+LEFT JOIN emp_role
    ON employee.id = emp_role.id;
 
 
