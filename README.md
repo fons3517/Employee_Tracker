@@ -5,9 +5,9 @@ Employee_Tracker
 This application is a node.js file with npm inquirer, npm mysql2, and npm console.table being utilized to create databases and tables inside.
 
 ### Screenshots/Links
-[Screencastify_video]()
-![Screenshot1]()
-![Screenshot2]()
+[Screencastify_video](https://watch.screencastify.com/v/yR9qhbuRV2OancAdOHB8)
+![Screenshot1](Assets/globadineDB.JPG)
+![Screenshot2](Assets/schemaFile.JPG)
 
 
 ### Contributors:
