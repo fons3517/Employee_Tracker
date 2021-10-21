@@ -2,7 +2,7 @@
 Employee_Tracker
 
 ## Description:
-This application is a node.js file with npm inquirer, npm mysql2, and npm console.table being utilized to create databases and tables inside.
+Employee_Tracker is a node.js application with npm inquirer, npm mysql2, and npm console.table being utilized to create databases and tables inside. The application allows its users to create, read, update and delete information based on the user's queries.
 
 ### Screenshots/Links
 [Screencastify_video](https://watch.screencastify.com/v/yR9qhbuRV2OancAdOHB8)
